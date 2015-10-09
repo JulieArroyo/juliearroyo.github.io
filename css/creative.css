@@ -58,6 +58,7 @@ p {
 .bg-dark {
     color: #fff;
     background-color: #222;
+    padding-top: 2em;
 }
 
 .text-faded {
@@ -73,7 +74,9 @@ aside  li{
     list-style-type: none;
     display:inline;
     font-size: 45px;
+    padding-right:50px;
 }
+
 
 
 .no-padding {
