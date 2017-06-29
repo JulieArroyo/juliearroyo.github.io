@@ -30,6 +30,10 @@ a {
     -moz-transition: all .35s;
     transition: all .35s;
 }
+/*white text on orange background*/
+.w-link{
+  color:#ffffff;
+}
 
 a:hover,
 a:focus {
