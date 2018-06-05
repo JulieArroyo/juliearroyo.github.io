@@ -274,7 +274,9 @@ header .header-content .header-content-inner p {
 }
 
 
-
+#portfolio{
+  background-color:#eee;
+}
 .portfolio-box {
     display: block;
     position: relative;
