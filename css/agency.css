@@ -311,6 +311,26 @@ h3.dark{
   color:rgba(25, 25, 112)!important;
 }
 
+
+/* TITLE MOBILE STYLES */
+@media (max-width: 768px) {
+h2.section-heading{
+  font-size:40px !important;
+}
+h3{
+  font-size:1rem;
+}
+.heading-intro {
+    padding-top: 150px;
+    padding-bottom: 50px;
+    font-size: 35px;
+}
+#top-image{
+  padding-bottom:0px;
+  top:98px;
+}
+}
+
 /* Portfolio Title & Animation */
 #portfolio .section-heading{
   color:#fff;
