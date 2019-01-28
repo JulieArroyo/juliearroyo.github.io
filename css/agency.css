@@ -344,6 +344,9 @@ h2#services{
   font-size:31px !important;
   padding-bottom:20px!important;
 }
+section#contact{
+  background-position:top;
+}
 }
 
 /* Portfolio Title & Animation */
