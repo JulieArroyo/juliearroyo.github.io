@@ -337,6 +337,13 @@ header.masthead .opacity{
 .not-mobile{
   display:none;
 }
+#mainNav{
+  background-color:rgba(25, 25, 112) !important;
+}
+h2#services{
+  font-size:31px;
+  padding-bottom:20px;
+}
 }
 
 /* Portfolio Title & Animation */
