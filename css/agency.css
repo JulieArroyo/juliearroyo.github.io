@@ -328,7 +328,8 @@ h3{
 #top-image{
   padding-bottom:0px;
   top:98px;
-  background: url("../img/logowithShadow.png") -25px -7px;
+  background-position-x: -25px;
+  background-position-y: -7px;
 }
 header.masthead .opacity{
   padding-bottom:200px
