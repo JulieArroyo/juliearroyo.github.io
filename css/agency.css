@@ -341,8 +341,8 @@ header.masthead .opacity{
   background-color:rgba(25, 25, 112) !important;
 }
 h2#services{
-  font-size:31px;
-  padding-bottom:20px;
+  font-size:31px !important;
+  padding-bottom:20px!important;
 }
 }
 
