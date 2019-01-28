@@ -321,13 +321,20 @@ h3{
   font-size:1rem;
 }
 .heading-intro {
-    padding-top: 150px;
+    padding-top: 190px;
     padding-bottom: 50px;
     font-size: 35px;
 }
 #top-image{
   padding-bottom:0px;
   top:98px;
+  background: url("../img/logowithShadow.png") -25px -7px;
+}
+header.masthead .opacity{
+  padding-bottom:200px
+}
+.not-mobile{
+  display:none;
 }
 }
 
