@@ -758,7 +758,7 @@ section#contact {
   url("../img/KITES.JPG");
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 section#contact:before{
   background: rgba(0,0,0,.5);
