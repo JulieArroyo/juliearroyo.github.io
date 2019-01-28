@@ -313,7 +313,7 @@ h3.dark{
 
 
 /* TITLE MOBILE STYLES */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 h2.section-heading{
   font-size:40px !important;
 }
