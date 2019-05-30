@@ -186,7 +186,7 @@ img::-moz-selection {
 header.masthead{
   text-align: center;
   color: white;
-  background-image: url("../img/geoPattern.jpg");
+  background-image: url("../img/KITES.JPG");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -244,7 +244,7 @@ header.masthead .intro-text .intro-heading {
 /* BACKGROUND MOVE */
 
 #top-image {
-  background:url("../img/logowithShadow.png") -25px -50px;
+  /*background:url("../img/logowithShadow.png") -25px -50px;*/
   position:relative ;
   top:70px;
   width:100%;
@@ -257,12 +257,15 @@ header.masthead .intro-text .intro-heading {
 
 .heading-intro{
   padding-top: 450px;
-  padding-bottom: 80px;
+  padding-bottom: 5px;
   font-size:80px;
   text-align:center;
-  animation-duration:2s;
   text-shadow:0px 2px 2px #E30047;
 
+}
+.sub-heading-intro{
+  padding:10px;
+  text-shadow:0px 2px 2px #E30047;
 }
 /* Icon STYLES */
 a .service-heading{
@@ -762,7 +765,7 @@ section#contact {
       rgba(25, 25, 112, 0.6),
       rgba(25, 25, 112, 0.6)
     ),
-  url("../img/KITES.JPG");
+  url("../img/geoPattern.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: scroll;
