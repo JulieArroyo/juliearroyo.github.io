@@ -350,6 +350,9 @@ a:hover{
      );
  /* change the calc height to a percentage height to get alternate responsive behavior*/
 }
+.about{
+  background-image: url(../img/julieAstro.png);
+}
 
 /* WELCOME SECTION */
 .welcome-section{
@@ -462,6 +465,30 @@ a.fa.blue-glow:hover{
   display:block;
   text-align:center;
 }
+
+/*ABOUT PAGE STYLES */
+.project-row-top{
+  margin-top:150px;
+}
+.center-it{
+  text-align:center;
+  display:block;
+  margin:0 auto;
+}
+.modal-dialog {
+    max-width: 40% !important;
+  }
+  .modal-content {
+      background-color: #000 !important;
+  }
+  .modal-title{
+    color:#fff !important;
+  }
+  .close{
+    color:#fff !important;
+  }
+
+
 /* MEIDA QUERIES */
 
 
