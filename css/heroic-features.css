@@ -471,6 +471,9 @@ a.fa.blue-glow:hover{
 .project-row-top{
   margin-top:150px;
 }
+img.hover-shadow{
+  margin-bottom:20px;
+}
 .center-it{
   text-align:center;
   display:block;
@@ -714,6 +717,7 @@ display:none;
 .mobile-break {
    display: none;
  }
+
 }
 @media (min-width: 1200px){
 .container {
