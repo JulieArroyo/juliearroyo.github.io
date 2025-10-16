@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About — Julie Arroyo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F8F5F1; --paper:#fff; --text:#1C1C1C; --muted:#6F6F6F;
+  --accent:#D87A56; --accent-soft:#E6C7A1; --border:#E7E3DC;
+  --max:1100px; --rad:12px; --gutter:24px;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Readex Pro",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* Container */
+.page{max-width:var(--max);margin:48px auto;padding:0 var(--gutter)}
+
+/* Header */
+header{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:8px 0 28px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--bg);z-index:10;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.mark{
+  width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--text),var(--accent));color:#fff;font-weight:700;font-size:16px
+}
+.brand h1{margin:0;font-size:16px;font-weight:600;letter-spacing:-.01em}
+.brand .muted{color:var(--muted);font-size:13px;margin-top:2px}
+
+/* Desktop nav */
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:6px 2px}
+.nav a:hover{color:var(--text)}
+.resume-cta{padding:8px 12px;border:1px solid rgba(28,28,28,.08);border-radius:10px;font-weight:600;font-size:13px}
+.resume-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Mobile menu button + drawer */
+.menu-btn{
+  display:none;background:transparent;border:1px solid rgba(28,28,28,.08);
+  padding:8px 12px;border-radius:10px;font-weight:600;font-size:13px
+}
+.menu-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.drawer{display:none;border-bottom:1px solid var(--border)}
+.drawer-inner{padding:12px 0;display:flex;flex-direction:column;gap:8px}
+.drawer a{padding:10px 4px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.drawer .resume-cta{align-self:flex-start}
+
+/* Hero / Intro */
+.hero{padding:54px 0 18px}
+.eyebrow{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:13px;margin-bottom:10px}
+h2.head{
+  margin:0 0 10px;font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(28px,4.2vw,40px);line-height:1.12;
+}
+p.lede{color:var(--muted);font-size:clamp(15px,2.2vw,18px);max-width:68ch;margin:0}
+
+/* Bio card */
+.card{
+  background:var(--paper);border:1px solid var(--border);border-radius:var(--rad);
+  padding:18px;display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start;margin-top:22px
+}
+.portrait{
+  width:120px;height:120px;border-radius:12px;background:linear-gradient(135deg,var(--text),var(--accent-soft));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px;overflow:hidden
+}
+.card p{margin:0 0 10px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.badge{padding:6px 10px;border-radius:999px;background:rgba(216,122,86,.08);border:1px solid rgba(216,122,86,.08);font-size:13px}
+
+/* Sections */
+.section{margin-top:38px}
+.section h3{font-size:14px;text-transform:uppercase;color:var(--muted);letter-spacing:.08em;margin:0 0 12px}
+.section p{margin:0 0 12px}
+
+/* Principles grid */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.principle{border:1px solid var(--border);border-radius:12px;padding:14px;background:var(--paper)}
+.principle h4{margin:0 0 6px;font-size:15px}
+.principle p{margin:0;color:var(--muted);font-size:14px}
+
+/* Chips / lists */
+.caps{display:flex;gap:10px;flex-wrap:wrap}
+.cap{padding:8px 12px;border-radius:10px;background:#fff;border:1px solid var(--border);font-size:13px}
+
+/* Timeline */
+.timeline{border:1px solid var(--border);border-radius:12px;background:#fff}
+.row{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:14px;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:none}
+.row .when{font-size:13px;color:var(--muted)}
+.row .where{margin:0;font-weight:600}
+.row .what{margin:4px 0 0;color:var(--muted);font-size:14px}
+
+/* Tools */
+.tools{display:flex;gap:10px;flex-wrap:wrap}
+.tool{border:1px solid var(--border);background:#fff;border-radius:10px;padding:8px 10px;font-size:13px}
+
+/* CTA */
+.cta{
+  margin-top:42px;padding:18px;border-radius:12px;
+  background:linear-gradient(90deg, rgba(216,122,86,.06), rgba(230,199,161,.02));
+  border:1px solid rgba(216,122,86,.08);
+  display:flex;justify-content:space-between;align-items:center;gap:12px
+}
+.btn{padding:10px 14px;border-radius:10px;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;border:1px solid transparent}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:transparent;border:1px solid rgba(28,28,28,.08)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* Footer */
+footer{margin-top:48px;padding:18px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13px}
+
+/* Responsive */
+@media (max-width:980px){
+  .page{margin:32px auto}
+  .principles{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  header{padding-bottom:18px}
+  .nav{display:none}
+  .menu-btn{display:inline-flex;align-items:center;gap:8px}
+  .drawer{display:block}
+  .card{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .cta{flex-direction:column;align-items:flex-start}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <!-- Header -->
+    <header>
+      <div class="brand" aria-label="Site brand">
+        <div class="mark" aria-hidden="true">JA</div>
+        <div>
+          <h1>Julie Arroyo</h1>
+          <div class="muted">Senior Digital Product Designer</div>
+        </div>
+      </div>
+
+      <!-- Desktop nav -->
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Work</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="#contact">Contact</a>
+        <a class="resume-cta" href="/resume.pdf" download>Resume</a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button class="menu-btn" id="menuBtn"
+        aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        Menu
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Mobile drawer -->
+    <div class="drawer" id="mobileNav" hidden>
+      <div class="drawer-inner" role="navigation" aria-label="Mobile">
+        <a href="index.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+        <a class="resume-cta" href="/resume.pdf" download>Resume</a>
+      </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="hero" aria-labelledby="about-heading">
+      <div class="eyebrow">About</div>
+      <h2 id="about-heading" class="head">Designing where brand story meets everyday usability.</h2>
+      <p class="lede">I’m Julie Arroyo — a Senior Digital Product Designer based in Chicago. I craft brand-led, story-driven interfaces for broadcast, lifestyle, and product teams, blending emotion, clarity, and craft to make digital experiences feel human.</p>
+    </section>
+
+    <!-- Bio card -->
+    <section class="card" aria-label="Bio">
+      <div class="portrait" aria-hidden="true">
+        <!-- Swap for a headshot <img loading="lazy" src="images/julie-headshot.jpg" alt="Portrait of Julie Arroyo"> -->
+        JA
+      </div>
+      <div>
+        <p>Over the last decade I’ve worked across UX, UI, and visual systems — from national television websites and cross-platform design systems to small-business sites with SEO foundations and tangible merchandise like apparel and collectibles.</p>
+        <p>My approach is equal parts structure and storytelling: clear information architecture, accessible components, and a visual language that respects the brand’s voice.</p>
+        <div class="badges" aria-hidden="true">
+          <span class="badge">UX & Interaction</span>
+          <span class="badge">Design Systems</span>
+          <span class="badge">Art Direction</span>
+          <span class="badge">Brand & Visual</span>
+          <span class="badge">Frontend Collaboration</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="section" aria-labelledby="philosophy">
+      <h3 id="philosophy">Philosophy</h3>
+      <div class="principles">
+        <div class="principle">
+          <h4>Human first</h4>
+          <p>Design should feel as good as it looks — empathetic, legible, and inclusive.</p>
+        </div>
+        <div class="principle">
+          <h4>Systems with soul</h4>
+          <p>Components and guidelines bring consistency without flattening brand personality.</p>
+        </div>
+        <div class="principle">
+          <h4>Story as strategy</h4>
+          <p>Every screen should communicate what the brand stands for and why it matters.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="section" aria-labelledby="capabilities">
+      <h3 id="capabilities">Capabilities</h3>
+      <div class="caps" role="list">
+        <span class="cap" role="listitem">UX / UI Design</span>
+        <span class="cap" role="listitem">Design Systems</span>
+        <span class="cap" role="listitem">Information Architecture</span>
+        <span class="cap" role="listitem">Visual & Brand Design</span>
+        <span class="cap" role="listitem">Art Direction</span>
+        <span class="cap" role="listitem">Prototyping (Figma)</span>
+        <span class="cap" role="listitem">Accessibility (WCAG 2.1 AA)</span>
+        <span class="cap" role="listitem">SEO-aware Web</span>
+        <span class="cap" role="listitem">Frontend Collaboration</span>
+        <span class="cap" role="listitem">Asset & Merch Design</span>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" aria-labelledby="experience">
+      <h3 id="experience">Experience Snapshot</h3>
+      <div class="timeline" role="list">
+        <div class="row" role="listitem">
+          <div class="when">2022 — Present</div>
+          <div>
+            <p class="where">Senior Digital Product Designer — Broadcast</p>
+            <p class="what">Lead UX/UI for national television websites and show ecosystems; established modular design system and accessibility standards; partner with producers and engineers.</p>
+          </div>
+        </div>
+        <div class="row" role="listitem">
+          <div class="when">2017 — 2022</div>
+          <div>
+            <p class="where">Digital Designer — Freelance / Studio</p>
+            <p class="what">Brand and web for small businesses; SEO-minded site builds; merchandise and printable collectibles; social and campaign creative.</p>
+          </div>
+        </div>
+        <div class="row" role="listitem">
+          <div class="when">2014 — 2017</div>
+          <div>
+            <p class="where">UI/UX & Front-End Collaboration</p>
+            <p class="what">Interface design and handoff for marketing sites and product surfaces; component libraries and responsive systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="section" aria-labelledby="tools">
+      <h3 id="tools">Tools</h3>
+      <div class="tools" aria-hidden="true">
+        <span class="tool">Figma</span>
+        <span class="tool">Illustrator</span>
+        <span class="tool">Photoshop</span>
+        <span class="tool">After Effects (light)</span>
+        <span class="tool">Miro</span>
+        <span class="tool">HTML/CSS (collab)</span>
+      </div>
+    </section>
+
+    <!-- Personal -->
+    <section class="section" aria-labelledby="personal">
+      <h3 id="personal">Beyond Work</h3>
+      <p>When I’m not designing, you’ll catch me sketching, refining color palettes, or turning brand ideas into tangible pieces. I’m drawn to teams that care about craft, clarity, and building things people actually enjoy using.</p>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact" class="cta" aria-labelledby="contact-label">
+      <div>
+        <div id="contact-label" class="title" style="font-weight:600">Let’s collaborate</div>
+        <div class="muted" style="margin-top:6px">Open to senior roles and thoughtful partnerships — remote or hybrid.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <a class="btn btn-primary" href="mailto:hello@juliearroyo.com">Email Me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/juliearroyo" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Julie Arroyo — Crafted with clarity and warmth.
+    </footer>
+  </main>
+
+<script>
+  // Set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle (accessible)
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('mobileNav');
+  let isOpen = false;
+
+  function setMenu(open){
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    drawer.hidden = !open;
+  }
+
+  menuBtn.addEventListener('click', ()=>{ isOpen = !isOpen; setMenu(isOpen); });
+  drawer?.addEventListener('click', (e)=>{ if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
+
+  // Smooth scroll for in-page links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+</script>
+</body>
+</html>
