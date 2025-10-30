@@ -306,7 +306,13 @@ While some designs perform better than others, consistent best-sellers like the 
   //drawer.addEventListener('click', e => { if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
    //document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
 
-  
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', !isOpen);
+  });
 
 
   // Smooth scroll for in-page links
@@ -318,12 +324,6 @@ While some designs perform better than others, consistent best-sellers like the 
     });
   });
 </script>
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileNav = document.getElementById('mobileNav');
-
-  menuBtn.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('hidden');
-    menuBtn.setAttribute('aria-expanded', !isOpen);
-  });
+  
 </body>
 </html>
