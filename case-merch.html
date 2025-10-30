@@ -294,18 +294,27 @@ While some designs perform better than others, consistent best-sellers like the 
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const drawer = document.getElementById('mobileNav');
-  let isOpen = false;
+ // const menuBtn = document.getElementById('menuBtn');
+ // const drawer = document.getElementById('mobileNav');
+ // let isOpen = false;
 
-  function setMenu(open){
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    drawer.hidden = !open;
-  }
-  menuBtn.addEventListener('click', ()=>{ isOpen = !isOpen; setMenu(isOpen); });
-  drawer.addEventListener('click', e => { if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
+ // function setMenu(open){
+ //   menuBtn.setAttribute('aria-expanded', String(open));
+ //   menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+ //   drawer.hidden = !open;
+ // }
+ // menuBtn.addEventListener('click', ()=>{ isOpen = !isOpen; setMenu(isOpen); });
+ // drawer.addEventListener('click', e => { if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
+ // document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
+
+  
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
 
   // Smooth scroll for in-page links
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
