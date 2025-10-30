@@ -151,13 +151,12 @@ footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-al
       </nav>
 
       <!-- Mobile menu button -->
-      <button class="menu-btn" id="menuBtn"
-        aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
-        Menu
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        </svg>
-      </button>
+      <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile Primary">
+  <a href="index.html#work">Work</a>
+  <a href="about.html">About</a>
+  <a href="#contact">Contact</a>
+  <a class="resume-cta" href="/assets/img/Arroyo Resume_2025.docx.pdf" download>Resume</a>
+</nav>
     </header>
 
     <!-- Mobile drawer -->
@@ -294,18 +293,18 @@ While some designs perform better than others, consistent best-sellers like the 
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const drawer = document.getElementById('mobileNav');
-  let isOpen = false;
+  // const menuBtn = document.getElementById('menuBtn');
+  // const drawer = document.getElementById('mobileNav');
+  // let isOpen = false;
 
-  function setMenu(open){
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-   drawer.hidden = open;
-  }
-  menuBtn.addEventListener('click', ()=>{ isOpen = !isOpen; setMenu(isOpen); });
- drawer.addEventListener('click', e => { if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
+  // function setMenu(open){
+  //   menuBtn.setAttribute('aria-expanded', String(open));
+   //  menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+   // drawer.hidden = !open;
+   //}
+  // menuBtn.addEventListener('click', ()=>{ isOpen = !isOpen; setMenu(isOpen); });
+  //drawer.addEventListener('click', e => { if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
+   //document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
 
   
 
@@ -319,5 +318,12 @@ While some designs perform better than others, consistent best-sellers like the 
     });
   });
 </script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', !isOpen);
+  });
 </body>
 </html>
