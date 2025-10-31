@@ -385,7 +385,7 @@ footer{margin-top:48px;padding:18px 0;border-top:1px solid var(--border);text-al
 <script>
   // Set year
   document.getElementById('year').textContent = new Date().getFullYear();
-  
+
 // test js for mobile menu
   document.addEventListener('DOMContentLoaded', function () {
     const menuBtn = document.getElementById('menuBtn');
@@ -393,19 +393,15 @@ footer{margin-top:48px;padding:18px 0;border-top:1px solid var(--border);text-al
     const header = document.querySelector('header');
 
     if (!menuBtn || !mobileNav || !header) {
-      // If anything missing, show a console message for easier debugging
       console.warn('Menu toggle: missing expected elements', { menuBtn, mobileNav, header });
       return;
     }
 
-    // Position mobile nav directly below header (handles responsive header heights)
     function positionMobileNav() {
       const headerRect = header.getBoundingClientRect();
-      const topOffset = Math.ceil(headerRect.bottom); // pixel value for top
+      const topOffset = Math.ceil(headerRect.bottom);
       mobileNav.style.top = topOffset + 'px';
-      // Optional: set a max-height so it doesn't overflow the viewport
       mobileNav.style.maxHeight = (window.innerHeight - topOffset) + 'px';
-      // Hide with attribute initially
       mobileNav.hidden = false;
       mobileNav.setAttribute('data-open', 'false');
     }
@@ -413,15 +409,18 @@ footer{margin-top:48px;padding:18px 0;border-top:1px solid var(--border);text-al
     positionMobileNav();
     window.addEventListener('resize', positionMobileNav);
 
-    // Toggle behavior
+    function closeMenu() {
+      mobileNav.setAttribute('data-open', 'false');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
     menuBtn.addEventListener('click', function (e) {
       e.preventDefault();
       const isOpen = mobileNav.getAttribute('data-open') === 'true';
       const newState = !isOpen;
       mobileNav.setAttribute('data-open', String(newState));
-      // Accessibility toggle
       menuBtn.setAttribute('aria-expanded', String(newState));
-      // Keep focus management simple: if opened, move focus to first link
+
       if (newState) {
         const firstLink = mobileNav.querySelector('a');
         if (firstLink) firstLink.focus();
@@ -430,25 +429,32 @@ footer{margin-top:48px;padding:18px 0;border-top:1px solid var(--border);text-al
       }
     });
 
-    // Close menu when clicking outside the nav on mobile
+    // 🔹 Close when clicking outside
     document.addEventListener('click', function (evt) {
-      if (window.innerWidth >= 768) return; // only for mobile
+      if (window.innerWidth >= 768) return;
       const target = evt.target;
       const clickingMenuBtn = menuBtn.contains(target);
       const clickingInsideNav = mobileNav.contains(target);
       if (!clickingMenuBtn && !clickingInsideNav && mobileNav.getAttribute('data-open') === 'true') {
-        mobileNav.setAttribute('data-open', 'false');
-        menuBtn.setAttribute('aria-expanded', 'false');
+        closeMenu();
       }
     });
 
-    // Allow Escape key to close
+    // 🔹 Close when pressing Escape
     document.addEventListener('keydown', function (evt) {
       if (evt.key === 'Escape' && mobileNav.getAttribute('data-open') === 'true') {
-        mobileNav.setAttribute('data-open', 'false');
-        menuBtn.setAttribute('aria-expanded', 'false');
+        closeMenu();
         menuBtn.focus();
       }
+    });
+
+    // 🔹 NEW: Close when a menu link is clicked
+    const navLinks = mobileNav.querySelectorAll('a[href]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+        // Let the browser handle navigation normally (anchors or other pages)
+      });
     });
   });
 
