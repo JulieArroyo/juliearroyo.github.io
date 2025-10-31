@@ -49,16 +49,59 @@ header{
 .resume-cta{padding:8px 12px;border:1px solid rgba(28,28,28,.08);border-radius:10px;font-weight:600;font-size:13px}
 .resume-cta:hover{border-color:var(--accent);color:var(--accent)}
 
-/* Mobile menu button + drawer */
-.menu-btn{
-  display:none;background:transparent;border:1px solid rgba(28,28,28,.08);
-  padding:8px 12px;border-radius:10px;font-weight:600;font-size:13px
+.menu-btn {
+  background: none;
+  border: 1px solid transparent;
+  padding: 8px 10px;
+  font-size: 14px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
 }
-.menu-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.drawer{display:none;border-bottom:1px solid var(--border)}
-.drawer-inner{padding:12px 0;display:flex;flex-direction:column;gap:8px}
-.drawer a{padding:10px 4px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.drawer .resume-cta{align-self:flex-start}
+
+/* Mobile nav: initially hidden with 'hidden' attribute; we use [data-open="true"] to show */
+.mobile-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;                /* JS will offset it below header */
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  z-index: 1200;
+  transform-origin: top center;
+  transform: translateY(-6px) scaleY(0.98);
+  opacity: 0;
+  transition: transform .28s ease, opacity .24s ease;
+  padding: 1rem 1.25rem;
+}
+
+/* Visible state */
+.mobile-nav[data-open="true"] {
+  transform: translateY(0) scaleY(1);
+  opacity: 1;
+}
+
+/* Make sure links are legible and stacked */
+.mobile-nav a {
+  display: block;
+  padding: 12px 0;
+  color: #222; /* adjust to your text color */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Small device behavior: hide desktop nav, show menu button */
+@media (max-width: 767px) {
+  .nav { display: none; }       /* hide desktop nav on mobile */
+  .menu-btn { display: inline-flex; }
+}
+
+/* Desktop overrides: show desktop nav and hide mobile toggle */
+@media (min-width: 768px) {
+  .menu-btn { display: none; }
+  .mobile-nav { display: none !important; }
+}
 
 /* Hero */
 .hero{padding:42px 0 18px;text-align:center}
@@ -150,25 +193,22 @@ footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-al
         <a class="resume-cta" href="/assets/img/Arroyo Resume_2025.docx.pdf" download>Resume</a>
       </nav>
 
-      <!-- Mobile menu button -->
-      <button class="menu-btn" id="menuBtn"
-        aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
-        Menu
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </header>
+     <!-- Mobile menu button -->
+<button class="menu-btn" id="menuBtn"
+  aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+  Menu
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </svg>
+</button>
 
-    <!-- Mobile drawer -->
-    <div class="drawer" id="mobileNav" hidden>
-      <div class="drawer-inner" role="navigation" aria-label="Mobile">
-        <a href="index.html#work">Work</a>
-        <a href="about.html">About</a>
-        <a href="#contact">Contact</a>
-        <a class="resume-cta" href="/assets/img/Arroyo Resume_2025.docx.pdf" download>Resume</a>
-      </div>
-    </div>
+<!-- Mobile nav (single source of truth; remove any other mobile nav duplicates) -->
+<nav id="mobileNav" class="mobile-nav" aria-label="Mobile Primary" hidden>
+  <a href="index.html#work">Work</a>
+  <a href="about.html">About</a>
+  <a href="#contact">Contact</a>
+  <a class="resume-cta" href="/assets/img/Arroyo Resume_2025.docx.pdf" download>Resume</a>
+</nav>
 
     <!-- Hero -->
     <section class="hero" aria-labelledby="title">
@@ -293,19 +333,78 @@ with younger viewers, positioning the brand for continued growth and relevance i
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const drawer = document.getElementById('mobileNav');
-  let isOpen = false;
+ // test js for mobile menu
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const header = document.querySelector('header');
 
-  function setMenu(open){
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    drawer.hidden = !open;
-  }
-  menuBtn.addEventListener('click', ()=>{ isOpen = !isOpen; setMenu(isOpen); });
-  drawer.addEventListener('click', e => { if(e.target.tagName==='A'){ isOpen=false; setMenu(false); } });
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && isOpen){ isOpen=false; setMenu(false); } });
+    if (!menuBtn || !mobileNav || !header) {
+      console.warn('Menu toggle: missing expected elements', { menuBtn, mobileNav, header });
+      return;
+    }
+
+    function positionMobileNav() {
+      const headerRect = header.getBoundingClientRect();
+      const topOffset = Math.ceil(headerRect.bottom);
+      mobileNav.style.top = topOffset + 'px';
+      mobileNav.style.maxHeight = (window.innerHeight - topOffset) + 'px';
+      mobileNav.hidden = false;
+      mobileNav.setAttribute('data-open', 'false');
+    }
+
+    positionMobileNav();
+    window.addEventListener('resize', positionMobileNav);
+
+    function closeMenu() {
+      mobileNav.setAttribute('data-open', 'false');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    menuBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isOpen = mobileNav.getAttribute('data-open') === 'true';
+      const newState = !isOpen;
+      mobileNav.setAttribute('data-open', String(newState));
+      menuBtn.setAttribute('aria-expanded', String(newState));
+
+      if (newState) {
+        const firstLink = mobileNav.querySelector('a');
+        if (firstLink) firstLink.focus();
+      } else {
+        menuBtn.focus();
+      }
+    });
+
+    // 🔹 Close when clicking outside
+    document.addEventListener('click', function (evt) {
+      if (window.innerWidth >= 768) return;
+      const target = evt.target;
+      const clickingMenuBtn = menuBtn.contains(target);
+      const clickingInsideNav = mobileNav.contains(target);
+      if (!clickingMenuBtn && !clickingInsideNav && mobileNav.getAttribute('data-open') === 'true') {
+        closeMenu();
+      }
+    });
+
+    // 🔹 Close when pressing Escape
+    document.addEventListener('keydown', function (evt) {
+      if (evt.key === 'Escape' && mobileNav.getAttribute('data-open') === 'true') {
+        closeMenu();
+        menuBtn.focus();
+      }
+    });
+
+    // 🔹 NEW: Close when a menu link is clicked
+    const navLinks = mobileNav.querySelectorAll('a[href]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+        // Let the browser handle navigation normally (anchors or other pages)
+      });
+    });
+  });
+
 
   // Smooth scroll for in-page links
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
