@@ -181,6 +181,20 @@ footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-al
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   *{animation:none!important;transition:none!important}
+
+  /* Fade-up animation base state */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+
+/* Activated state */
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 }
 </style>
 </head>
@@ -275,11 +289,11 @@ footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-al
 
       <!-- Two-up image pair -->
       <div class="pair" style="margin-top:10px">
-        <figure class="card">
+        <figure class="card fade-up">
           <img loading="lazy" src="assets/img/mall logo gif.gif" alt="mall logo animation">
           <!--<figcaption class="caption">WordPress builds with wireframes.</figcaption> -->
         </figure>
-        <figure class="card">
+        <figure class="card fade-up">
           <img loading="lazy" src="assets/img/Mall Stats.png" alt="Mall Stats Imge with circles">
           <!--<figcaption class="caption">SEO site set up & monitoring.</figcaption> -->
         </figure>
@@ -288,18 +302,18 @@ footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-al
 
 
     <!-- Full length image -->
-    <div class="hero-frame">
+    <div class="hero-frame fade-up">
         <img loading="lazy" src="assets/img/Mall_Laptop screens.png" alt="Project hero visual (abstract UI or product composition)">
       </div>
 
 
      <!-- Two-up image pair -->
       <div class="pair" style="margin-top:10px">
-        <figure class="card">
+        <figure class="card fade-up">
           <img loading="lazy" src="assets/img/Mall Socials.png" alt="3 phones with mall social posts">
           <!--<figcaption class="caption">WordPress builds with wireframes.</figcaption> -->
         </figure>
-        <figure class="card">
+        <figure class="card fade-up">
           <img loading="lazy" src="assets/img/Mall-products.gif" alt="Design system components">
           <!--<figcaption class="caption">SEO site set up & monitoring.</figcaption> -->
         </figure>
@@ -423,6 +437,28 @@ footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-al
         // Let the browser handle navigation normally (anchors or other pages)
       });
     });
+  });
+
+// Image scroll effect //
+  document.addEventListener("DOMContentLoaded", function () {
+    const fadeItems = document.querySelectorAll(".fade-up");
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); // animate once
+          }
+        });
+      },
+      {
+        threshold: 0.15, // trigger when 15% visible
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    fadeItems.forEach(item => observer.observe(item));
   });
 
 
