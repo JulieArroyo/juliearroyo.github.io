@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Case Study — Merchandise & Collectibles</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Julie Arroyo · Digital Designer">
+<meta property="og:description" content="Creative Refined Digital Design — Portfolio of Julie Arroyo">
+<meta property="og:image" content="https://www.juliearroyo.com/assets/img/JulieArroyo_25-OG.png">
+<meta property="og:url" content="https://www.juliearroyo.com">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+
+
+<style>
+:root{
+  --bg:#F8F5F1; --paper:#fff; --text:#1C1C1C; --muted:#6F6F6F;
+  --accent:#D87A56; --accent-soft:#E6C7A1; --border:#E7E3DC;
+  --max:1100px; --rad:12px; --gutter:24px;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Readex Pro",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* Container */
+.page{max-width:var(--max);margin:48px auto;padding:0 var(--gutter)}
+
+/* Header */
+header{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:8px 0 28px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--bg);z-index:10;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.mark{
+  width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--text),var(--accent));color:#fff;font-weight:700;font-size:16px
+}
+.brand h1{margin:0;font-size:16px;font-weight:600;letter-spacing:-.01em}
+.brand .muted{color:var(--muted);font-size:13px;margin-top:2px}
+
+/* Desktop nav */
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:6px 2px}
+.nav a:hover{color:var(--text)}
+.resume-cta{padding:8px 12px;border:1px solid rgba(28,28,28,.08);border-radius:10px;font-weight:600;font-size:13px}
+.resume-cta:hover{border-color:var(--accent);color:var(--accent)}
+
+.menu-btn {
+  background: none;
+  border: 1px solid transparent;
+  padding: 8px 10px;
+  font-size: 14px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Mobile nav: initially hidden with 'hidden' attribute; we use [data-open="true"] to show */
+.mobile-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;                /* JS will offset it below header */
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  z-index: 1200;
+  transform-origin: top center;
+  transform: translateY(-6px) scaleY(0.98);
+  opacity: 0;
+  transition: transform .28s ease, opacity .24s ease;
+  padding: 1rem 1.25rem;
+}
+
+/* Visible state */
+.mobile-nav[data-open="true"] {
+  transform: translateY(0) scaleY(1);
+  opacity: 1;
+}
+
+/* Make sure links are legible and stacked */
+.mobile-nav a {
+  display: block;
+  padding: 12px 0;
+  color: #222; /* adjust to your text color */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Small device behavior: hide desktop nav, show menu button */
+@media (max-width: 767px) {
+  .nav { display: none; }       /* hide desktop nav on mobile */
+  .menu-btn { display: inline-flex; }
+}
+
+/* Desktop overrides: show desktop nav and hide mobile toggle */
+@media (min-width: 768px) {
+  .menu-btn { display: none; }
+  .mobile-nav { display: none !important; }
+}
+
+/* Hero */
+.hero{padding:42px 0 18px;text-align:center}
+h1.title{
+  margin:0 0 6px;font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(26px,4.2vw,36px);line-height:1.15;
+}
+p.kicker{color:var(--muted);font-size:clamp(15px,2.2vw,18px);max-width:72ch;margin:0 auto}
+.hero-frame{
+  background:var(--paper);border:1px solid var(--border);border-radius:var(--rad);
+  margin-top:18px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.05)
+}
+.hero-frame img{border-radius:10px;aspect-ratio:16/9;object-fit:cover}
+
+/* Info grid */
+.info{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:14px 0;margin-top:22px
+}
+.info .item h4{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 4px}
+.info .item p{margin:0}
+
+/* Sections */
+.section{margin-top:28px}
+.section h2{font-size:13px;text-transform:uppercase;color:var(--muted);letter-spacing:.08em;margin:0 0 8px}
+.section p{margin:.3rem 0 1rem}
+
+/* Two-up image pair */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{
+  /*background:var(--paper);border:1px solid var(--border);border-radius:12px;padding:12px; */
+  box-shadow:0 8px 20px rgba(0,0,0,.04);
+  margin:0;
+}
+.card img{border-radius:8px;aspect-ratio:1;object-fit:cover}
+.caption{margin:.4rem 0 0;color:var(--muted);font-size:.9rem}
+
+/* Gallery grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tile{background:var(--paper);border:1px solid var(--border);border-radius:12px;padding:12px;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+.tile img{border-radius:8px;aspect-ratio:4/3;object-fit:cover}
+
+/* Prev/Next */
+.pager{
+  display:flex;justify-content:space-between;gap:10px;margin-top:30px;
+  border-top:1px solid var(--border);padding-top:16px
+}
+.pager a{font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+
+/* Footer */
+footer{margin-top:40px;padding:18px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13px}
+
+/* Responsive */
+@media (max-width:980px){
+  .page{margin:32px auto}
+  .info{grid-template-columns:repeat(2,1fr)}
+  .pair,.grid{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  header{padding-bottom:18px}
+  .nav{display:none}
+  .menu-btn{display:inline-flex;align-items:center;gap:8px}
+  .drawer{display:block}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <!-- Header -->
+    <header>
+     <a href="index.html"> <div class="brand" aria-label="Site brand">
+        <div class="mark" aria-hidden="true">JA</div>
+        <div>
+          <h1>Julie Arroyo</h1>
+          <div class="muted">Senior Digital Product Designer</div>
+        </div>
+      </div></a>
+
+      <!-- Desktop nav -->
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+        <a class="resume-cta" href="/assets/img/Arroyo Resume_2025.docx.pdf" download>Resume</a>
+      </nav>
+
+<!-- Mobile menu button -->
+<button class="menu-btn" id="menuBtn"
+  aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+  Menu
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </svg>
+</button>
+
+<!-- Mobile nav (single source of truth; remove any other mobile nav duplicates) -->
+<nav id="mobileNav" class="mobile-nav" aria-label="Mobile Primary" hidden>
+  <a href="index.html#work">Work</a>
+  <a href="about.html">About</a>
+  <a href="#contact">Contact</a>
+  <a class="resume-cta" href="/assets/img/Arroyo Resume_2025.docx.pdf" download>Resume</a>
+</nav>
+
+
+    </header>
+
+    
+
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="title">
+      <h1 id="title" class="title">National TV Brand</h1>
+      <p class="kicker">Designing for National televion program and broader network brands. </p>
+      <!-- <div class="hero-frame">
+        
+        <img loading="lazy" src="assets/img/Merch hero_v3.png" alt="Project hero visual (abstract UI or product composition)">
+      </div> -->
+    </section>
+
+    <!-- Info -->
+    <div class="info" role="list">
+      <div class="item" role="listitem">
+        <h4>Role</h4><p>Lead Web Designer</p>
+      </div>
+      <div class="item" role="listitem">
+        <h4>Scope</h4><p>Web, Merch & Social Support Design Lead</p>
+      </div>
+      <div class="item" role="listitem">
+        <h4>Tools</h4><p>Figma, Photoshop, Mailchimp, Shopify</p>
+      </div>
+      <div class="item" role="listitem">
+        <h4>Timeline</h4><p>Ongoing</p>
+      </div>
+    </div>
+
+    <!-- Challenge -->
+    <section class="section" aria-labelledby="challenge">
+      <h2 id="challenge">Challenge</h2>
+      <p>Designing merchandise for the Svengoolie brand meant creating fresh designs that long-time fans would 
+        still want to collect. The challenge was to keep each piece true to the show’s distinct personality while 
+        introducing new art, products, and materials.</p><br>
+I developed artwork for apparel, collectibles, and seasonal items, and collaborated with external illustrators — 
+adapting their work across formats while maintaining brand consistency and quality.</p>
+    </section>
+
+    <!-- Approach -->
+    <section class="section" aria-labelledby="approach">
+      <h2 id="approach">Approach</h2>
+      <p>My process begins with research — reviewing recent show episodes and visiting the set to capture 
+        tone and inspiration directly from the source. I also study comparable brands with similar audiences 
+        to understand current trends and opportunities. </p><br>
+From there, I evaluate what’s worked well in previous collections and identify ways 
+to evolve the visual direction. Throughout the process, I collaborate closely with the merchandise team and 
+manufacturers to align creative ideas with materials, production methods, and pricing.</p>
+</section>
+
+      <!-- Two-up image pair -->
+      <div class="pair" style="margin-top:10px">
+        <figure class="card">
+          <img src="assets/img/S BW logo.jpg" alt="mall logo animation" class="fade-up">
+          <!--<figcaption class="caption">WordPress builds with wireframes.</figcaption> -->
+        </figure>
+        <figure class="card">
+          <img src="assets/img/svens.gif" alt="Mall Stats Imge with circles" class="fade-up">
+          <!--<figcaption class="caption">SEO site set up & monitoring.</figcaption> -->
+        </figure>
+      </div>
+    
+
+
+    <!-- Full length image -->
+    <div class="hero-frame">
+        <img src="assets/img/S home laptop.jpg" alt="2 laptops with pages from the mall" class="fade-up">
+      </div>
+
+
+     <!-- Two-up image pair -->
+      <div class="pair" style="margin-top:10px">
+        <figure class="card">
+          <img src="assets/img/S Colors.jpg" alt="3 phones with mall social posts" class="fade-up">
+          <!--<figcaption class="caption">WordPress builds with wireframes.</figcaption> -->
+        </figure>
+        <figure class="card">
+          <img src="assets/img/S Fonts.jpg" alt="Design system components" class="fade-up">
+          <!--<figcaption class="caption">SEO site set up & monitoring.</figcaption> -->
+        </figure>
+      </div>
+
+
+    <!-- Outcome -->
+    <section class="section" aria-labelledby="outcome">
+      <h2 id="outcome">Outcome</h2>
+      <p>Through ongoing experimentation, we’ve identified what truly resonates with the audience — from collectible lawn inflatables and 
+        bobbleheads to patterned apparel that reflects the show’s humor and personality.<br>
+
+While some designs perform better than others, consistent best-sellers like the glow-in-the-dark logo shirt help anchor the line. Our growing
+ insight into fan preferences now informs not only product design but also how we market across newsletters, social channels, on-air promos, and the website.</p>
+    </section>
+
+
+
+
+    <!-- Prev / Next -->
+    <nav class="pager" aria-label="Project navigation">
+       <a href="case-broadcast.html">← Previous Project</a> 
+      <a href="case-smb.html">Next Project →</a>
+    </nav>
+
+    <!-- Contact CTA (optional anchor) -->
+    <section id="contact" class="section" aria-labelledby="contact-label" style="margin-top:32px">
+      <h2 id="contact-label" class="visually-hidden">Contact</h2>
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+                  padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(216,122,86,.06), rgba(230,199,161,.02));
+                  border:1px solid rgba(216,122,86,.08)">
+        <div>
+          <div style="font-weight:600">Let’s collaborate</div>
+          <div class="muted" style="margin-top:6px">Open to senior roles & thoughtful partnerships — remote or hybrid.</div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <a class="resume-cta" href="mailto:jnarroyo26@gmail.com" style="border-color:transparent;background:var(--accent);color:#fff">Email Me</a>
+          <a class="resume-cta" href="https://www.linkedin.com/in/arroyojulianne/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Julie Arroyo — Crafted with clarity and warmth.
+    </footer>
+  </main>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // test js for mobile menu
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const header = document.querySelector('header');
+
+    if (!menuBtn || !mobileNav || !header) {
+      console.warn('Menu toggle: missing expected elements', { menuBtn, mobileNav, header });
+      return;
+    }
+
+    function positionMobileNav() {
+      const headerRect = header.getBoundingClientRect();
+      const topOffset = Math.ceil(headerRect.bottom);
+      mobileNav.style.top = topOffset + 'px';
+      mobileNav.style.maxHeight = (window.innerHeight - topOffset) + 'px';
+      mobileNav.hidden = false;
+      mobileNav.setAttribute('data-open', 'false');
+    }
+
+    positionMobileNav();
+    window.addEventListener('resize', positionMobileNav);
+
+    function closeMenu() {
+      mobileNav.setAttribute('data-open', 'false');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    menuBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isOpen = mobileNav.getAttribute('data-open') === 'true';
+      const newState = !isOpen;
+      mobileNav.setAttribute('data-open', String(newState));
+      menuBtn.setAttribute('aria-expanded', String(newState));
+
+      if (newState) {
+        const firstLink = mobileNav.querySelector('a');
+        if (firstLink) firstLink.focus();
+      } else {
+        menuBtn.focus();
+      }
+    });
+
+    // 🔹 Close when clicking outside
+    document.addEventListener('click', function (evt) {
+      if (window.innerWidth >= 768) return;
+      const target = evt.target;
+      const clickingMenuBtn = menuBtn.contains(target);
+      const clickingInsideNav = mobileNav.contains(target);
+      if (!clickingMenuBtn && !clickingInsideNav && mobileNav.getAttribute('data-open') === 'true') {
+        closeMenu();
+      }
+    });
+
+    // 🔹 Close when pressing Escape
+    document.addEventListener('keydown', function (evt) {
+      if (evt.key === 'Escape' && mobileNav.getAttribute('data-open') === 'true') {
+        closeMenu();
+        menuBtn.focus();
+      }
+    });
+
+    // 🔹 NEW: Close when a menu link is clicked
+    const navLinks = mobileNav.querySelectorAll('a[href]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+        // Let the browser handle navigation normally (anchors or other pages)
+      });
+    });
+  });
+
+
+  // Smooth scroll for in-page links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+</script>
+  
+</body>
+</html>
