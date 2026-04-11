@@ -239,6 +239,14 @@ background-image: url("assets/img/Background.png");
 .headline{
   color:#fff;
 }
+/* Timeline */
+.timeline{border:1px solid #606237;border-radius:12px;}
+.row{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:14px;border-bottom:1px solid #606237;}
+.row:last-child{border-bottom:none}
+.row .when{font-size:13px;color:#000}
+.row .where{margin:0;font-weight:600}
+.row .what{margin:4px 0 0;color:#000;font-size:14px}
+
 
   /* Respect users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce){
@@ -388,7 +396,40 @@ background-image: url("assets/img/Background.png");
     </section>
 
 
-    <!-- ===== About preview ===== -->
+
+
+     <!-- Experience -->
+    <section class="section" aria-labelledby="experience">
+      <h3 id="experience">Experience Snapshot</h3>
+      <div class="timeline" role="list">
+        <div class="row" role="listitem">
+          <div class="when">2022 — Present</div>
+          <div>
+            <p class="where">Senior Digital Product Designer — Broadcast</p>
+            <p class="what">Lead visual design and creative execution across web for national brands, overseeing campaigns, 
+              merchandise, and digital experiences across multiple platforms.</p>
+          </div>
+        </div>
+        <div class="row" role="listitem">
+          <div class="when">2017 — 2022</div>
+          <div>
+            <p class="where">Digital Designer — Freelance / Studio</p>
+            <p class="what">Directed brand and marketing design for 70+ small business clients, 
+              translating business goals into cohesive visual systems across web, social, and print.</p>
+          </div>
+        </div>
+        <div class="row" role="listitem">
+          <div class="when">2014 — 2017</div>
+          <div>
+            <p class="where">UI/UX & Front-End Collaboration</p>
+            <p class="what">Built and optimized brand-focused digital experiences in collaboration with design and marketing teams.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== About preview 
     <section class="section" aria-labelledby="about-preview">
       <h2 id="about-preview">About</h2>
       <div class="about-card">
@@ -401,7 +442,7 @@ background-image: url("assets/img/Background.png");
           </div>
         </div>
       </div>
-    </section>
+    </section>  ===== -->
 
     <!-- ===== Contact CTA ===== -->
     <section id="contact" class="section" aria-labelledby="contact-label">
