@@ -220,16 +220,20 @@ background-image: url("/assets/img/Background.png");
   @media (max-width:980px){
     .page{margin:32px auto}
     .hero{grid-template-columns:1fr}
-    .principles{grid-template-columns:1fr 1fr}
+    
     .work-grid{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:720px){
     header{padding-bottom:18px}
     /* switch to mobile nav */
     .card{grid-template-columns:1fr}
-  .principles{grid-template-columns:1fr}
-  .row{grid-template-columns:1fr}
-  .cta{flex-direction:column;align-items:flex-start}
+ .nav{display:none}
+    .menu-btn{display:inline-flex;align-items:center;gap:8px}
+    .drawer{display:block}
+    .work-grid{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr;gap:24px}
+      .hero-visual{order:-1;width:100%} 
   }
 
 
