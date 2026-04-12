@@ -175,6 +175,17 @@ body {
 background-image: url("assets/img/Background.png");
 }
 
+/* Contact CTA */
+  .contact-cta{
+    display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px;border-radius:12px;
+    background:linear-gradient(90deg, rgba(216,122,86,0.06), rgba(230,199,161,0.02));
+    border:1px solid rgba(216,122,86,0.06);
+  }
+    .btn-primary{background:#c7681f;color:#fff}
+  .btn-primary:focus-visible{outline:2px solid var(--accent-soft);outline-offset:2px}
+  .btn-ghost{color:#fff;background:transparent;border:1px solid #ffffff52}
+  .btn-ghost:hover{border-color:#c7681f;color:#c7681f}
+
 /* Responsive */
 @media (max-width:980px){
   .page{margin:32px auto}
@@ -354,7 +365,7 @@ background-image: url("assets/img/Background.png");
       <div class="contact-cta" role="region" aria-label="Contact">
         <div>
           <div class="title" style="font-weight:600">Want to know more? Let’s talk</div>
-          <div class="muted" style="margin-top:6px">Open to senior full-time positions in the Chicago area</div>
+          <div class="muted" style="margin-top:6px">Open to senior full-time positions in the Chicago area.</div>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
           <a class="btn btn-primary" href="mailto:jnarroyo26@gmail.com">Email Me</a>
